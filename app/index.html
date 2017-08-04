@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="instaApp">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta charset="utf-8">
 	<title>Instagram Client</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	
 </head>
-<body>
+<body ng-controller="dataCtrl">
 	<header>
 		<div class="container block">
 			<div class="logo__block">
@@ -21,31 +20,39 @@
 			</nav>
 		</div>
 	</header>
-	<section name="profile_info">
-		<div class="block container">
-			<div class="avatar__block"><img class="avatar__block" src="img/item.png"></div>
-			<div class="info__block">
-				<div class="block">
-					<p>username</p>
-					<button class="btn_follow">Follow</button>
-				</div>
-				<div><span>
-						<p></p>
-						<p></p>
-						<p></p>
-					</span></div>
-				<div>
+	<section>
+		<div class="container block__center"><button class="btn_follow">Auth</button></div>
+	</section>
+<!-- 	<section name="profile_info" >
+	<div class="block container">
+		<div class="avatar__block"><img class="avatar__block" src="img/item.png"></div>
+		<div class="info__block">
+			<div class="block">
+				<p ng-bind="username"></p>
+				<button class="btn_follow">Follow</button>
+			</div>
+			<div><span>
 					<p></p>
-				</div>
+					<p></p>
+					<p></p>
+				</span></div>
+			<div>
+				<p></p>
 			</div>
 		</div>
-	</section>
-	<section name="posts">
-		<div class="container">
-			
+	</div>
+</section>
+<section name="posts">
+	<div class="container">
+		<div class="block__content" ng-repeat="src in content track by $index">
+			<img class="content__item" ng-src="{{src}}">
 		</div>
-	</section>
+	</div>
+</section> -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="libs/angular-resource/angular-resource.min.js"></script>
+	<script src="scripts/app-s.js"></script>
 </body>
 </html>

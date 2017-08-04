@@ -1,0 +1,18 @@
+{
+  "name": "instagram-client",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Marina Z."
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Bellatrix988/instagram-client-angularjs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/libs",
+    "test",
+    "tests"
+  ]
+}

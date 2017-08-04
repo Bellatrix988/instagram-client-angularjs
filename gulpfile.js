@@ -53,10 +53,10 @@ gulp.task('merge-js', function() {
 
 // Minify JS
 gulp.task('minify-js', ['merge-js'], function() {
-    return gulp.src(['app/scripts/*.js'])
-        .pipe(uglify())
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('app/js'))
+    return gulp.src(['app/scripts/app-s.js'])
+        // .pipe(uglify())
+        // .pipe(rename({ suffix: '.min' }))
+        // .pipe(gulp.dest('app/js'))
         .pipe(browserSync.reload({
             stream: true
         }))

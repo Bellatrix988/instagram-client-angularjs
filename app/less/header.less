@@ -3,6 +3,12 @@ header{
 	height: 75px;
 }
 
+.content__item{
+	width: 250px;
+	height: 250px;
+	margin: 5px;
+}
+
 .block{
 	height: 100%;
 	display: flex;
@@ -13,4 +19,31 @@ header{
 	        justify-content: space-between;
 	    -webkit-align-items: center;
 	            align-items: center;
+	
+	&__center{
+		height: 300px;
+		display: flex;
+		-webkit-justify-content: center;
+		        justify-content: center;
+			-webkit-align-items: center;
+	                align-items: center;		        
+	}
+
+	&__elem{
+		width: 292px;
+		height: 292px;
+	}
+
+	&__content{
+		display: inline-flex;
+		-webkit-flex-direction: row;
+		    -ms-flex-direction: row;
+		        flex-direction: row;
+		-webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;
+		    -webkit-justify-content: space-between;
+		            justify-content: space-between;
+	}
+
 }
