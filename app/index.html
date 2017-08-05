@@ -21,7 +21,9 @@
 		</div>
 	</header>
 	<section>
-		<div class="container block__center"><button class="btn_follow">Auth</button></div>
+		<div class="container block__center">
+			<button class="btn_follow" ng-click="auth()">Auth</button>
+		</div>
 	</section>
 <!-- 	<section name="profile_info" >
 	<div class="block container">
@@ -49,10 +51,13 @@
 		</div>
 	</div>
 </section> -->
-
+	<!-- LIBS -->
 	<script src="libs/angular/angular.min.js"></script>
 	<script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="libs/angular-resource/angular-resource.min.js"></script>
+    <script src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+
+    <!-- Works Scripts -->
 	<script src="scripts/app-s.js"></script>
 </body>
 </html>
