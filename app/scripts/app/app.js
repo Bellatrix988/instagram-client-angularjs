@@ -1,0 +1,1 @@
+var app = angular.module('instaApp',['insta_apiApp', 'routingApp']);

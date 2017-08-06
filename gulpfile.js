@@ -46,7 +46,7 @@ gulp.task('minify-css', ['less'], function() {
 });
 
 gulp.task('merge-js', function() {  
-    return gulp.src(['app/scripts/app/app.js','app/scripts/app/modules/*.js','app/scripts/app/modules/**/*.js'])
+    return gulp.src(['app/scripts/app/*.js'])
         .pipe(concat('app-s.js'))
         .pipe(gulp.dest('app/scripts'))
 });
@@ -106,5 +106,6 @@ gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() 
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('app/style.min.css', browserSync.reload);
     gulp.watch('app/**/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
+    gulp.watch('app/html-part/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
     gulp.watch('app/scripts/**/*.js', browserSync.reload); // Наблюдение за JS
 });
