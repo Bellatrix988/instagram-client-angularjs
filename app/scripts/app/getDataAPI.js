@@ -6,47 +6,23 @@
  			$sceDelegateProvider.resourceUrlWhitelist([
 		    'self',
 		    'http://192.168.0.103:3000/**',
-		    'http://192.168.0.103:3000',
 		    'https://bellatrix988.ru/**/*',
 		    'https://bellatrix988.ru',
 		    'https://bellatrix988.ru/content/instagram-client.html',
 		    "https://www.instagram.com/**/*"
 		  ]);
  		}])
- 		.factory('InstagramService', ['$rootScope', '$location', '$http', function ($rootScope, $location, $http) {
+ 		.factory('InstagramService', ['$rootScope', '$location', '$http', '$window', function ($rootScope, $location, $http, $window) {
 			    var client_id = "4a73bf00df514996b3ce157f0e804700";
  				var redirect_uri = "http://192.168.0.103:3000";//'https://bellatrix988.ru/content/instagram-client.html';//
 			    var service = {
-			    	_access_token: null,
-			        access_token: function(newToken) {
-			            if(angular.isDefined(newToken)) {
-			                this._access_token = newToken;
-			            }
-			            return this._access_token;
-			        },
 			        login: function () {
-			            var igPopup = window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
+			            var igPopup = $window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
 			                "&redirect_uri=" + redirect_uri +
-			                "&response_type=token", "igPopup");
+			                "&response_type=token", "_self");
 			        }
 			    };
-
-			    $rootScope.$on("igAccessTokenObtained", function (evt, args) {
-			        service.access_token(args.access_token);
-			    });
 			    return service;
- 		}])
- 		.factory('auth', ['$sce', '$http', function($sce, $http){
- 			var redirect_uri = "http://192.168.0.103:3000";//'https://bellatrix988.ru/content/instagram-client.html';//
-		    var client_id = "4a73bf00df514996b3ce157f0e804700";//"0bbbd75fb94f4fcdaacd4d540d4f0577";//
-		    redirect_uri = $sce.trustAsResourceUrl(redirect_uri);
-		    var endpoint = 'https://api.instagram.com/oauth/authorize/?client_id='+client_id+'&redirect_uri='+redirect_uri+'&response_type=token';
-		    return $http.get(endpoint)
-				    .then(function(response) {
-				        var data = response.data;
-				        console.log(data);
-				        return data;
-    				});
  		}])
 		// .controller("userData",['$scope', 'InstagramService', '$http', function($scope, InstagramService, $http){
 		// 	$scope.test = function(){

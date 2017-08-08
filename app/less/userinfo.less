@@ -1,12 +1,24 @@
 @import url('mixins.less');
 
-.avatar__block{
-	width: 150px;
-	.round-borders(50%);
+.userinfo{
+	margin: 30px 0;
+	font-family:'Roboto', sans-serif;
+	font-size: 12pt;
 }
 
+.avatar__block{
+	width: 250px;
+	display: block;
+	margin-left: 50px;
+	&__img{
+    box-sizing: border-box;
+    overflow: hidden;
+	    position: relative;
+		width: 150px;
+		.round-borders(50%);
+	}
 
-
+}
 .btn_follow{
 	.round-borders(4px);
 	background: #41a1f2;
@@ -15,3 +27,11 @@
 	color: white
 	
 }
+
+
+@media (max-width: 735px){
+		.avatar__block {
+	    margin-right: 28px;
+	}
+}
+

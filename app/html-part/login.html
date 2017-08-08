@@ -1,37 +1,43 @@
 <section ng-switch on="token">
 	<section ng-switch-when="-1">
-			<div class="container block__center">
-				<button class="btn_follow"  ng-click="login()" ui-sref="login">Authenficatio</button>
-				<!-- <p ng-bind="data.id"></p> -->
+			<div class="container block__center" ng-init="login()">
+				<button class="btn_follow"  ng-click="login()" >Авторизация</button>
 			</div>
 	</section>
-	<section name="profile_info" ng-switch-default>
+	<section class="userinfo" name="profile_info" ng-switch-default>
 		<div class="block container">
-			<div class="avatar__block"><img class="avatar__block" ng-src="{{data.profilePic}}"></div>
-			<div class="info__block">
-				<div class="block">
+			<div class="avatar__block"><img class="avatar__block__img" ng-src="{{data.profile_picture}}"></div>
+			<div class="block__line">
+				<div class="block__content">
 					<p ng-bind="data.username"></p>
 					<button class="btn_follow">Follow</button>
 				</div>
-				<div class="block">
-					<p><span ng-bind="data.countFollow.media"></span> posts </p>
-					<p><span ng-bind="data.countFollow.followed_by"></span> followers </p>
-					<p><span ng-bind="data.countFollow.follows"></span> following </p>
+				<div class="block__content">
+					<p><span ng-bind="data.counts.media"></span> posts </p>
+					<p><span ng-bind="data.counts.followed_by"></span> followers </p>
+					<p><span ng-bind="data.counts.follows"></span> following </p>
 				</div>
-				<div >
+				<div  class="block__content">
 					<p>
-					<span ng-bind="data.fullname"></span>
-					<span ng-bind="data.biography"></span>
+					<span ng-bind="data.full_name"></span>
+					<span ng-bind="data.bio"></span>
 					<span ng-bind="data.website"></span>
 					</p>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section name="posts">
+	<section name="posts" class="content">
 		<div class="container">
-			<div class="block__content" ng-repeat="src in content track by $index">
-				<img class="content__item" ng-src="{{src}}">
+			<div class="block__content" ng-repeat="item in media track by $index">
+			<figure>
+				<img class="content__item" ng-src="{{item.images.low_resolution.url}}">
+				<figcaption>
+					<p>likes<span>{{item.likes.count}}</span></p>   
+					<p>comments<span>{{item.comments.count}}</span></p>   
+				</figcaption>
+			</figure>
+				
 			</div>
 		</div>
 	</section>
