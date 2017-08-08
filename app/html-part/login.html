@@ -10,7 +10,6 @@
 			<div class="block__line">
 				<div class="block__content">
 					<p ng-bind="data.username"></p>
-					<button class="btn_follow">Follow</button>
 				</div>
 				<div class="block__content">
 					<p><span ng-bind="data.counts.media"></span> posts </p>
@@ -29,8 +28,8 @@
 	</section>
 	<section name="posts" class="content">
 		<div class="container">
-			<div class="block__content" ng-repeat="item in media track by $index">
-			<figure>
+			<div class="block__content" ng-repeat="item in medias track by $index">
+			<figure ui-sref="post({token: token, id: item.id})" class="cap-left">
 				<img class="content__item" ng-src="{{item.images.low_resolution.url}}">
 				<figcaption>
 					<p>likes<span>{{item.likes.count}}</span></p>   

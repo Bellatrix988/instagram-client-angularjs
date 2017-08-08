@@ -1,0 +1,24 @@
+<section name="post" ng-init="getMedia(token, id)">
+	<div class="container block userinfo">
+		<div class="post__media">
+			<img ng-src="{{media.images.standard_resolution.url}}">
+		</div>
+		<div class="post__comments">
+			<div>
+				<img class="avatar__block__img img40" ng-src="{{media.user.profile_picture}}">
+				{{media.user.username}}
+			</div>
+			<hr>
+				<p>{{media.user.username}}<span>{{media.caption.text}}</span></p>
+			<div ng-repeat="comment in comments">
+				<p>{{comment.from.username}}<span>{{comment.text}}</span></p>
+			</div>
+			<div>
+				<p>
+					<span ng-bind="media.likes.count"></span> отметок "Нравится"
+				</p>
+				<p><span ng-bind="media.created_time"></span></p>
+			</div>
+		</div>
+	</div>
+</section>

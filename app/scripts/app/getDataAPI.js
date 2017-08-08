@@ -1,7 +1,6 @@
- var app = angular.module('insta_apiApp',['ngResource', 'ngSanitize']);
+ var app = angular.module('insta_apiApp',['ngDialog']);
  angular.module('insta_apiApp')
  		.config(['$sceDelegateProvider','$qProvider', function($sceDelegateProvider, $qProvider) {
- 			// $resourceProvider.defaults.stripTrailingSlashes = false;
  			$qProvider.errorOnUnhandledRejections(false);
  			$sceDelegateProvider.resourceUrlWhitelist([
 		    'self',
@@ -12,38 +11,66 @@
 		    "https://www.instagram.com/**/*"
 		  ]);
  		}])
- 		.factory('InstagramService', ['$rootScope', '$location', '$http', '$window', function ($rootScope, $location, $http, $window) {
+ 		.service('ApiData', ['$http', function($http){
+ 			this.getData = function(url){
+	                return $http.get(url);
+ 			};
+ 		}])
+ 		.factory('InstagramService', ['$window', function ( $window) {
 			    var client_id = "4a73bf00df514996b3ce157f0e804700";
  				var redirect_uri = "http://192.168.0.103:3000";//'https://bellatrix988.ru/content/instagram-client.html';//
 			    var service = {
 			        login: function () {
-			            var igPopup = $window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
+			            $window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
 			                "&redirect_uri=" + redirect_uri +
 			                "&response_type=token", "_self");
 			        }
 			    };
 			    return service;
  		}])
-		// .controller("userData",['$scope', 'InstagramService', '$http', function($scope, InstagramService, $http){
-		// 	$scope.test = function(){
-		// 		InstagramService.login();
-		// 		console.log('test');
-		// 	}
-		// 	//get info about user with current token
-		// 	// var token = '3502197374.4a73bf0.9e1979277f0741bf9fff981605483cfa';
-		// 	var token = $scope.token;
- 	// 		var url = 'https://api.instagram.com/v1/users/self/?access_token='+token;
- 	// 		$http.get(url).then(function(response){
- 	// 			let dataPattern = response.data.data;
- 	// 			$scope.data = {
- 	// 				id: dataPattern.id,
- 	// 				username : dataPattern.username,
- 	// 				profilePic : dataPattern.profile_picture,
- 	// 				countFollow : dataPattern.counts,
- 	// 				fullname : dataPattern.full_name,
- 	// 				biography : dataPattern.bio,
- 	// 				website : dataPattern.website
- 	// 			};
-		// 	});
- 	// 		$scope.content = Array(9).fill("./../../img/item.png");
-		// }]);
+	    .controller("userData",['$scope', 'ApiData', 'ngDialog', '$location', function($scope, ApiData, ngDialog, $location){
+            $scope.clickToOpen = function (token,id) {
+            	$scope.getMedia(token, id);
+		        ngDialog.open({
+		         template: '../../html-part/post.html', 
+		         className: 'ngdialog-theme-default' 
+		     });
+		    };
+
+            getData = function(url){
+            	return ApiData.getData(url);
+            }
+            $scope.token = '-1';
+
+            //get info about user with current token
+            var url = $location.absUrl();
+            if(url.includes('access_token=')){
+                var index = url.lastIndexOf('=');
+                var token = url.substring(index+1);
+                console.log('TOKEN = ', token);
+                $scope.token = token;
+            }
+            if($scope.token !== '-1'){
+ 				var url = 'https://api.instagram.com/v1/users/self/?access_token='+ $scope.token;
+                var urlMediaInfo = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=' + $scope.token;
+
+                getData(url).then(function(response){
+					$scope.data = response.data.data;
+	            });
+	            getData(urlMediaInfo).then(function(response){
+	            	$scope.medias = response.data.data;
+	            });
+            }
+
+            $scope.getMedia = function(token, id){
+                var urlMediaInfo = 'https://api.instagram.com/v1/media/'+id+'?access_token=' + token;
+                var urlMediaComments = 'https://api.instagram.com/v1/media/'+ id +'/comments?access_token='+ token;
+                
+                getData(urlMediaInfo).then(function(response){
+                    $scope.media = response.data.data;
+                });
+                getData(urlMediaComments).then(function(response){
+                    $scope.comments = response.data.data;
+                });
+            }
+        }]);
