@@ -42,14 +42,21 @@ var app = angular.module('instaApp',['insta_apiApp', 'routingApp']);
             	return ApiData.getData(url);
             }
             $scope.token = '-1';
-
+            $scope.media_id = '-1';
             //get info about user with current token
             var url = $location.absUrl();
-            if(url.includes('access_token=')){
-                var index = url.lastIndexOf('=');
-                var token = url.substring(index+1);
+            if(url.includes('token=')){
+                var index = url.lastIndexOf('n=');
+                var indEnd = url.lastIndexOf('&id');
+                var token = url.substring(index+2,51 + index + 2);
                 console.log('TOKEN = ', token);
                 $scope.token = token;
+            }
+            if(url.includes('id')){
+                var index = url.lastIndexOf('=');
+                var media_id = url.substring(index+1);
+                console.log('media_id = ', media_id);
+                $scope.media_id = media_id;
             }
             if($scope.token !== '-1'){
  				var url = 'https://api.instagram.com/v1/users/self/?access_token='+ $scope.token;
@@ -94,7 +101,7 @@ routingApp
         })
 
         .state('post',{
-            url: '/post={{id}}',
+            url: '/post?token&id',
             templateUrl: '../../../html-part/post.html',
             params:{
                 token: null,

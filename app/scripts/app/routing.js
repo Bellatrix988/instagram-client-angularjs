@@ -16,7 +16,7 @@ routingApp
         })
 
         .state('post',{
-            url: '/post={{id}}',
+            url: '/post?token&id',
             templateUrl: '../../../html-part/post.html',
             params:{
                 token: null,
