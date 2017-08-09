@@ -7,11 +7,11 @@
 	<section class="userinfo" name="profile_info" ng-switch-default>
 		<div class="block container">
 			<div class="avatar__block"><img class="avatar__block__img" ng-src="{{data.profile_picture}}"></div>
-			<div class="block__line">
+			<div class="block__line content">
 				<div class="block__content">
 					<p ng-bind="data.username"></p>
 				</div>
-				<div class="block__content">
+				<div class="block__content ">
 					<p><span ng-bind="data.counts.media"></span> posts </p>
 					<p><span ng-bind="data.counts.followed_by"></span> followers </p>
 					<p><span ng-bind="data.counts.follows"></span> following </p>

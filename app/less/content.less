@@ -1,5 +1,10 @@
 .content{
-
+  width: 100%;
+  
+  &__item{
+    width:293px;
+    height: 293px;
+  }
 }
 
 figure {
@@ -7,9 +12,7 @@ figure {
   position: relative;
   float: left;
   overflow: hidden;
-  margin: 5px;
-  
-  // margin: 0 20px 20px 0;
+  margin: 0 20px 20px 0;
 }
 
 figcaption {
@@ -44,3 +47,4 @@ figure:hover:before {
 .cap-bot:before { bottom: 10px; left: 10px; }
 .cap-bot figcaption { left: 0; bottom: -30%;}
 .cap-bot:hover figcaption { bottom: 0; }
+
