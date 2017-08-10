@@ -19,12 +19,15 @@ var app = angular.module('instaApp',['insta_apiApp', 'routingApp']);
  			this.getData = function(url){
 	                return $http.get(url);
  			};
+            this.jsonData = function(url){
+                return $http.jsonp(url);
+            }
  		}])
         //factory for Authentication user
  		.factory('InstagramService', ['$window', function ( $window) {
 			    var client_id = "4a73bf00df514996b3ce157f0e804700";
  				var redirect_uri = "http://192.168.0.103:3000";//'https://bellatrix988.ru/content/instagram-client.html';//
-			    var service = {
+                var service = {
                     //redirects user on page-Authentication
 			        login: function () {
 			            $window.open("https://instagram.com/oauth/authorize/?client_id=" + client_id +
@@ -39,8 +42,7 @@ var app = angular.module('instaApp',['insta_apiApp', 'routingApp']);
             getData = function(url){
             	return ApiData.getData(url);
             }
-
-            $scope.token = '-1';
+            $scope.token = '3502197374.4a73bf0.9e1979277f0741bf9fff981605483cfa'; //'-1';
             $scope.media_id = '-1';
 
             //region get info about user with current token and id
@@ -98,7 +100,7 @@ routingApp
             templateUrl: '../../../html-part/login.html',
             controller: function($scope, InstagramService){
                 $scope.login = function(){
-                    InstagramService.login();
+                    // InstagramService.login();
                     console.log('test');
                 }
             }

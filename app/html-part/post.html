@@ -4,20 +4,19 @@
 			<img ng-src="{{media.images.standard_resolution.url}}">
 		</div>
 		<div class="post__comments">
-			<div>
+			<div class="post__comments__header">
 				<img class="avatar__block__img img40" ng-src="{{media.user.profile_picture}}">
-				{{media.user.username}}
+				<span class="post__comments__username"> {{media.user.username}}</span> 
 			</div>
 			<hr>
-				<p>{{media.user.username}}<span>{{media.caption.text}}</span></p>
+				<p><span class="post__comments__username">{{media.user.username}}</span> <span>{{media.caption.text}}</span></p>
 			<div ng-repeat="comment in comments">
-				<p>{{comment.from.username}}<span>{{comment.text}}</span></p>
+				<p class="post__comments__text"> <span class="post__comments__username">{{comment.from.username}}</span> <span class="post__comments__text">{{comment.text}}</span></p>
 			</div>
-			<div>
+			<div class="block__bottom">
 				<p>
 					<span ng-bind="media.likes.count"></span> отметок "Нравится"
 				</p>
-				<p><span ng-bind="media.created_time"></span></p>
 			</div>
 		</div>
 	</div>

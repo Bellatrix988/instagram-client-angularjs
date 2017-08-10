@@ -9,7 +9,7 @@ routingApp
             templateUrl: '../../../html-part/login.html',
             controller: function($scope, InstagramService){
                 $scope.login = function(){
-                    InstagramService.login();
+                    // InstagramService.login();
                     console.log('test');
                 }
             }
