@@ -12,12 +12,8 @@
 
 Сборка проекта осуществляется при помощи gulp и bower.
 
-Для запуска
-
-npm install
-
-gulp install 
-
-bower install
-
-gulp
+Для запуска:
+	npm install
+	gulp install 
+	bower install
+	gulp
