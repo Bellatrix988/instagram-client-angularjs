@@ -42,7 +42,7 @@ var app = angular.module('instaApp',['insta_apiApp', 'routingApp']);
             getData = function(url){
             	return ApiData.getData(url);
             }
-            $scope.token = '3502197374.4a73bf0.9e1979277f0741bf9fff981605483cfa'; //'-1';
+            $scope.token = '-1'; //'3502197374.4a73bf0.9e1979277f0741bf9fff981605483cfa'; //'-1';
             $scope.media_id = '-1';
 
             //region get info about user with current token and id
@@ -97,10 +97,10 @@ routingApp
     $stateProvider
         .state('login', {
             url: '',
-            templateUrl: '../../../html-part/login.html',
+            templateUrl: '../../html-part/login.html',
             controller: function($scope, InstagramService){
                 $scope.login = function(){
-                    // InstagramService.login();
+                    InstagramService.login();
                     console.log('test');
                 }
             }
@@ -108,7 +108,7 @@ routingApp
         //opening page with current media data 
         .state('post',{
             url: '/post?token&id',
-            templateUrl: '../../../html-part/post.html',
+            templateUrl: '../../html-part/post.html',
             params:{
                 token: null,
                 id: null

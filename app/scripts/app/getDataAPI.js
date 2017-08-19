@@ -40,7 +40,7 @@
             getData = function(url){
             	return ApiData.getData(url);
             }
-            $scope.token = '3502197374.4a73bf0.9e1979277f0741bf9fff981605483cfa'; //'-1';
+            $scope.token = '-1'; //'3502197374.4a73bf0.9e1979277f0741bf9fff981605483cfa'; //'-1';
             $scope.media_id = '-1';
 
             //region get info about user with current token and id

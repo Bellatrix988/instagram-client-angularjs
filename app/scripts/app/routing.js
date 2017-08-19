@@ -6,10 +6,10 @@ routingApp
     $stateProvider
         .state('login', {
             url: '',
-            templateUrl: '../../../html-part/login.html',
+            templateUrl: '../../html-part/login.html',
             controller: function($scope, InstagramService){
                 $scope.login = function(){
-                    // InstagramService.login();
+                    InstagramService.login();
                     console.log('test');
                 }
             }
@@ -17,7 +17,7 @@ routingApp
         //opening page with current media data 
         .state('post',{
             url: '/post?token&id',
-            templateUrl: '../../../html-part/post.html',
+            templateUrl: '../../html-part/post.html',
             params:{
                 token: null,
                 id: null

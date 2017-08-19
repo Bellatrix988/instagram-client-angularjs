@@ -3,4 +3,5 @@ templatePSD
 node_modules
 app/vendor
 app/libs
-
+app/css
+app/scripts/app-s.js
